@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+
 # %%
 
 
@@ -89,5 +90,19 @@ print(net.conv1.bias.grad)
 
 # %%
 learning_rate = 0.01
-for f in net.parameters:
+for f in net.parameters():
     f.data.sub_(f.grad.data * learning_rate)
+
+
+# %%
+# create your optimizer
+optimizer = optim.SGD(net.parameters(), lr=0.01)
+
+# in your training loop:
+optimizer.zero_grad()  # zero the gradient buffers
+output = net(input)
+loss = criterion(output, target)
+loss.backward()
+optimizer.step()  # Does the update
+
+# %%
