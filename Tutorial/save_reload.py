@@ -38,7 +38,8 @@ def save():
 
     # 2 ways to save the net
     torch.save(net1, 'net1.pkl')  # save entire net
-    torch.save(net1.state_dict(), 'net1_params.pkl')  # save only the parameters
+    # save only the parameters
+    torch.save(net1.state_dict(), 'net1_params.pkl')
 
 
 # %%
@@ -60,7 +61,6 @@ def restore_params():
         torch.nn.ReLU(),
         torch.nn.Linear(10, 1)
     )
-
 
     net3.load_state_dict(torch.load('net1_params.pkl'))
     predict = net3(x)
