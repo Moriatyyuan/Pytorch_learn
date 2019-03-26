@@ -45,7 +45,7 @@ net1 = torch.nn.Sequential(
     torch.nn.ReLU(),
     torch.nn.Linear(10, 2),
 )
-print(net2)
+print(net1)
 # %%
 
 
