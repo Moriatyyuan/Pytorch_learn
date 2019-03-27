@@ -35,7 +35,7 @@ class Net(torch.nn.Module):
         self.hidden = torch.nn.Linear(1, 20)
         self.predict = torch.nn.Linear(20, 1)
 
-    def foward(self, x):
+    def forward(self, x):
         x = F.relu(self.hidden(x))
         x = self.predict(x)
         return x
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     opt_RMSprop = torch.optim.RMSprop(
         net_RMSprop.parameters(), lr=LR, alpha=0.9)
     opt_Adam = torch.optim.Adam(
-        net_Adam.parameters(), lr=LR, betas=(0.9, 0.999))
+        net_Adam.parameters(), lr=LR, betas=(0.9, 0.99))
     optimizers = [opt_SGD, opt_Momentum, opt_RMSprop, opt_Adam]
 
     loss_func = torch.nn.MSELoss()
@@ -82,6 +82,3 @@ if __name__ == '__main__':
     plt.ylabel('Loss')
     plt.ylim((0, 0.2))
     plt.show()
-
-
-# %%
